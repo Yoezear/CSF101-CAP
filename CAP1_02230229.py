@@ -1,28 +1,14 @@
-
-############################
-# Thukten Yoezear
-# 1ICE
-# 02230229
-############################
-# REFERENCES
-#W3school:https://www.w3schools.com/python/
-#https://realpython.com/python-rock-paper-scissors/
-############################
-# SOLUTION
-# Solution Score:50267
-############################
 def calculate_score(given_move, given_outcome):
 #Define function to calculate score with two parameter given_move, and desired_outcome
-  """
-  Calculates the score for a single round of Rock-Paper-Scissors.
+  #Calculates the score for a single round of Rock-Paper-Scissors.
 
-  define:
-    given_move: A character representing the opponent's move (A for Rock, B for Paper, C for Scissors).
-    desired_outcome: A character representing the desired outcome (X for lose, Y for draw, Z for win).
+  #define:
+    #given_move: A character representing the opponent's move (A for Rock, B for Paper, C for Scissors).
+    #desired_outcome: A character representing the desired outcome (X for lose, Y for draw, Z for win).
 
-  Returns:
-    The total score for the round.
-  """
+  #Returns:
+   # The total score for the round.
+  
   # Define move scores
   moves_scores = {"A": 1, "B": 2, "C": 3}
   outcome_scores = {"X": 0, "Y": 3, "Z": 6}
