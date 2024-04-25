@@ -1,55 +1,46 @@
-def calculate_score(given_move, given_outcome):
-#Define function to calculate score with two parameter given_move, and desired_outcome
-  #Calculates the score for a single round of Rock-Paper-Scissors.
+def calculate_score(opponent_move, desired_outcome):
+    # This function calculates the score for a single round of Rock-Paper-Scissors.
+    
+    # Define move scores
+    move_values = {"A": 1, "B": 2, "C": 3}
+    outcome_values = {"X": 0, "Y": 3, "Z": 6}
 
-  #define:
-    #given_move: A character representing the opponent's move (A for Rock, B for Paper, C for Scissors).
-    #desired_outcome: A character representing the desired outcome (X for lose, Y for draw, Z for win).
+    # Calculate player's move based on the desired outcome
+    player_move = opponent_move  # default to opponent's move
+    if desired_outcome == "X":  # player has to lose
+        if opponent_move == "A":
+            player_move = "C"  # scissor loses to rock
+        elif opponent_move == "B":
+            player_move = "A"  # rock loses to paper
+        elif opponent_move == "C":
+            player_move = "B"  # paper loses to scissor
+    elif desired_outcome == "Z":
+        if opponent_move == "A":
+            player_move = "B"  # paper wins against rock
+        elif opponent_move == "B":
+            player_move = "C"  # scissor wins against paper
+        elif opponent_move == "C":
+            player_move = "A"  # rock wins against scissor
 
-  #Returns:
-   # The total score for the round.
-  
-  # Define move scores
-  moves_scores = {"A": 1, "B": 2, "C": 3}
-  outcome_scores = {"X": 0, "Y": 3, "Z": 6}
+    # Calculate round score
+    round_score = move_values[player_move] + outcome_values[desired_outcome]  # calculate score for each round
+    return round_score
 
-  # TO Calculate Player move based on desired outcome
-  player_move = given_move#for the draw
-  if given_outcome == "X":#player have to lose
-    if given_move == "A":
-      player_move = "C"  # scissor loses to rock
-    elif given_move == "B":
-      player_move = "A"  # rock loses to paper
-    elif given_move == "C":
-      player_move = "B"  # paper loses to scissor
-  elif given_outcome == "Z":
-    if given_move == "A":
-      player_move = "B"  # paper wins against rock
-    elif given_move == "B":
-      player_move = "C"  # scissor wins against paper
-    elif given_move == "C":
-      player_move = "A"  # rock wins against scissor
 
-  # Calculate round score
-  round_score = moves_scores[player_move] + outcome_scores[given_outcome]#calculate score for each rounds
+# Define input file name
+input_filename = f"input_9_cap1.txt"
 
-  return round_score
+# Initialize total score
+total_game_score = 0
 
-def main():
+# Read input file
+with open(input_filename, "r") as file:
+    # Iterate through each line in the file
+    for line in file:
+        # Remove extra whitespace and split the line into move and outcome
+        opponent_play, desired_result = line.strip().split()
+        # Calculate round score and update total score
+        total_game_score += calculate_score(opponent_play, desired_result)
 
-  # Define input file name
-  input_file = f"input_9_cap1.txt"
-
-  # To read input file
-  total_score = 0#Empty variable to calculate total score for every round
-  with open(input_file, "r") as file:
-    for line in file:# each line in the file
-      given_move, given_outcome = line.strip().split()#used for removing extra whitespaces and specific characters and split function split the str into list
-      round_score = calculate_score(given_move, given_outcome)
-      total_score += round_score
-
-  # Print total score
-  print(f"Total Score: {total_score}")
-
-if __name__ == "__main__":
-  main()# this conditional statement tells when the main module is interpreted
+# Print total score
+print(f"Total Game Score: {total_game_score}")
